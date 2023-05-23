@@ -75,32 +75,27 @@ class Control:
 						bins = np.array([-np.pi * 3/8, -np.pi/8 - 0.03, np.pi/8 + 0.03, np.pi * 3/8])
 						inds_target = np.digitize(target_x, bins)
 						inds_character = np.digitize(character_x, bins)
-						print(inds_target)
 						if inds_character < inds_target and not self.left:
-							print('direita', target_x, character_x, target_x - character_x, target_y)
 							if character_y < 0.55 and self.moving:
 								self.right = True
 								return -1
-							#elif np.abs(target_x - character_x) > 0.05:
 							else:
 								self.moving = False
 								return 1
 						elif inds_character > inds_target and not self.right:
-							print('Esquerda', target_x, character_x, target_x - character_x, character_y)
 							if character_y > -0.55 and self.moving:
 								self.left = True
 								return 1
-							#elif np.abs(target_x - character_x) > 0.05:
 							else:
 								self.moving = False
 								return -1
 						elif np.abs(character_y) > 0.5 and not self.moving:
-							print('ajustando', character_y)
 							return 0
 						else:
 							self.moving = True
 							self.right = False
 							self.left = False
+							#Controlador
 							return 0
 							
 					elif level == 2.0:
